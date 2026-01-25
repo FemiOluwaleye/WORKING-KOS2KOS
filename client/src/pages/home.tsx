@@ -46,12 +46,12 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-200 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-28">
+          <div className="flex justify-between items-center h-32">
             <div className="flex-shrink-0 flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              <div className="w-20 h-20 relative overflow-hidden rounded-xl bg-slate-100 dark:bg-white/10 p-2">
+              <div className="w-48 relative overflow-hidden">
                  <img src={logoImage} alt="KOS2KOS Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-display font-bold text-3xl tracking-wide text-slate-900 dark:text-white">
+              <span className="font-display font-bold text-3xl tracking-wide text-slate-900 dark:text-white hidden sm:block">
                 KOS<span className="text-primary">2</span>KOS
               </span>
             </div>
@@ -373,11 +373,11 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-12 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-             <div className="w-8 h-8 rounded bg-slate-200 dark:bg-white/10 p-1">
+          <div className="flex items-center gap-4">
+             <div className="w-40">
                 <img src={logoImage} alt="Logo" className="w-full h-full object-contain" />
              </div>
-             <span className="font-display font-bold text-slate-900 dark:text-white">KOS2KOS, LLC</span>
+             <span className="font-display font-bold text-2xl text-slate-900 dark:text-white">KOS2KOS, LLC</span>
           </div>
           <p className="text-slate-500 text-sm">© {new Date().getFullYear()} KOS2KOS, LLC. All rights reserved.</p>
         </div>
