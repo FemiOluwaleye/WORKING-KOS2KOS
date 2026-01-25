@@ -39,39 +39,76 @@
 }
 
 :root {
-  /* Dark Navy Theme Base */
-  --background: 222 47% 11%; /* #0f172a - Slate 900 */
-  --foreground: 210 40% 98%; /* Slate 50 */
+  /* LIGHT MODE (Default) */
+  --background: 210 40% 98%; /* Slate 50 */
+  --foreground: 222 47% 11%; /* Slate 900 */
 
-  /* KOS2KOS Brand Colors (Derived from Logo) */
   /* Primary: Vibrant Blue */
-  --primary: 217 91% 60%; /* #3b82f6 - Blue 500ish */
-  --primary-foreground: 222 47% 11%;
+  --primary: 217 91% 60%; 
+  --primary-foreground: 210 40% 98%;
 
-  /* Secondary: Darker Navy for contrast elements */
-  --secondary: 215 28% 17%; /* Slate 800 */
-  --secondary-foreground: 210 40% 98%;
+  /* Secondary: Light Blue/Slate for contrast */
+  --secondary: 210 40% 96%; /* Slate 100 */
+  --secondary-foreground: 222 47% 11%;
 
-  /* Accent: Cyan/Teal from logo network nodes */
-  --accent: 199 89% 48%; /* Sky/Cyan */
+  /* Accent: Cyan */
+  --accent: 199 89% 48%; 
   --accent-foreground: 210 40% 98%;
 
-  /* Muted Text */
+  /* Muted */
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215 16% 47%;
+
+  /* Card */
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 217 91% 60%;
+
+  --radius: 0.75rem;
+
+  /* Custom Glass Variables for Light Mode */
+  --glass-bg: 255 255 255;
+  --glass-border: 214 32% 91%;
+  --glass-opacity: 0.7;
+}
+
+.dark {
+  /* DARK MODE */
+  --background: 222 47% 11%; /* Slate 900 */
+  --foreground: 210 40% 98%; /* Slate 50 */
+
+  --primary: 217 91% 60%; 
+  --primary-foreground: 222 47% 11%;
+
+  --secondary: 215 28% 17%; 
+  --secondary-foreground: 210 40% 98%;
+
+  --accent: 199 89% 48%;
+  --accent-foreground: 210 40% 98%;
+
   --muted: 215 28% 17%;
   --muted-foreground: 215 20% 65%;
 
-  /* Glass Card Colors */
   --card: 222 47% 11%;
   --card-foreground: 210 40% 98%;
 
   --popover: 222 47% 11%;
   --popover-foreground: 210 40% 98%;
 
-  --border: 217 33% 25%; /* White/25 equivalent in solid */
+  --border: 217 33% 25%;
   --input: 217 33% 25%;
   --ring: 217 91% 60%;
 
-  --radius: 0.75rem;
+  /* Custom Glass Variables for Dark Mode */
+  --glass-bg: 15 23 42; /* Slate 900 */
+  --glass-border: 255 255 255;
+  --glass-opacity: 0.4;
 }
 
 @layer base {
@@ -80,12 +117,21 @@
   }
   body {
     @apply font-sans antialiased bg-background text-foreground selection:bg-primary/30;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Add subtle background pattern/gradient that changes with theme */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     background-image: 
       radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
       radial-gradient(circle at 85% 30%, rgba(14, 165, 233, 0.15), transparent 25%);
-    background-attachment: fixed;
+    pointer-events: none;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight font-bold;
   }
@@ -93,22 +139,22 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
+    @apply bg-white/70 dark:bg-slate-900/40 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl;
   }
   
   .glass-card {
-    @apply bg-slate-900/40 backdrop-blur-lg border border-white/10 shadow-lg hover:border-primary/50 transition-colors duration-300;
+    @apply bg-white/60 dark:bg-slate-900/40 backdrop-blur-lg border border-slate-200 dark:border-white/10 shadow-lg hover:border-primary/50 transition-colors duration-300;
   }
 
   .glass-button {
-    @apply bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all duration-300;
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-all duration-300;
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-200;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-blue-800 to-blue-900 dark:from-white dark:via-blue-100 dark:to-blue-200;
   }
   
   .text-gradient-primary {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300;
   }
 }

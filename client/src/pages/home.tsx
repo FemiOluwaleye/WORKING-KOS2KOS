@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import logoImage from "@assets/Logo-01_Transparent_1769326320869.png";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -41,31 +42,33 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden">
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-background text-foreground transition-colors duration-300">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
+      <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-200 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              <div className="w-10 h-10 relative overflow-hidden rounded-lg bg-white/10 p-1">
+              <div className="w-10 h-10 relative overflow-hidden rounded-lg bg-slate-100 dark:bg-white/10 p-1">
                  <img src={logoImage} alt="KOS2KOS Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-display font-bold text-xl tracking-wide text-white">
+              <span className="font-display font-bold text-xl tracking-wide text-slate-900 dark:text-white">
                 KOS<span className="text-primary">2</span>KOS
               </span>
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <button onClick={() => scrollToSection('services')} className="text-slate-300 hover:text-white transition-colors text-sm font-medium">Services</button>
-              <button onClick={() => scrollToSection('about')} className="text-slate-300 hover:text-white transition-colors text-sm font-medium">About</button>
-              <button onClick={() => scrollToSection('acquisitions')} className="text-slate-300 hover:text-white transition-colors text-sm font-medium">Sell Your Business</button>
-              <button onClick={() => scrollToSection('contact')} className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white text-sm font-semibold transition-all">
+              <button onClick={() => scrollToSection('services')} className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">Services</button>
+              <button onClick={() => scrollToSection('about')} className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">About</button>
+              <button onClick={() => scrollToSection('acquisitions')} className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">Sell Your Business</button>
+              <button onClick={() => scrollToSection('contact')} className="px-5 py-2.5 rounded-full bg-slate-900 text-white dark:bg-white/10 dark:hover:bg-white/20 hover:bg-slate-800 border border-transparent dark:border-white/10 dark:text-white text-sm font-semibold transition-all">
                 Contact Us
               </button>
+              <ModeToggle />
             </div>
 
-            <div className="md:hidden flex items-center">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white p-2">
+            <div className="md:hidden flex items-center gap-4">
+              <ModeToggle />
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-foreground p-2">
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
@@ -77,13 +80,13 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
-            className="md:hidden glass border-b border-white/5"
+            className="md:hidden glass border-b border-slate-200 dark:border-white/5"
           >
             <div className="px-4 pt-2 pb-6 space-y-2">
-              <button onClick={() => scrollToSection('services')} className="block w-full text-left px-3 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-md">Services</button>
-              <button onClick={() => scrollToSection('about')} className="block w-full text-left px-3 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-md">About</button>
-              <button onClick={() => scrollToSection('acquisitions')} className="block w-full text-left px-3 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-md">Sell Your Business</button>
-              <button onClick={() => scrollToSection('contact')} className="block w-full text-left px-3 py-3 text-base font-medium text-primary hover:text-blue-300">Contact Us</button>
+              <button onClick={() => scrollToSection('services')} className="block w-full text-left px-3 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-white/5 rounded-md">Services</button>
+              <button onClick={() => scrollToSection('about')} className="block w-full text-left px-3 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-white/5 rounded-md">About</button>
+              <button onClick={() => scrollToSection('acquisitions')} className="block w-full text-left px-3 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-white/5 rounded-md">Sell Your Business</button>
+              <button onClick={() => scrollToSection('contact')} className="block w-full text-left px-3 py-3 text-base font-medium text-primary hover:text-blue-600 dark:hover:text-blue-300">Contact Us</button>
             </div>
           </motion.div>
         )}
@@ -92,8 +95,8 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         {/* Abstract Background Blobs */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-accent/20 rounded-full blur-3xl opacity-50"></div>
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-200/50 dark:bg-primary/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-cyan-200/50 dark:bg-accent/20 rounded-full blur-3xl opacity-50"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
@@ -102,15 +105,15 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block py-1 px-3 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-6">
+              <span className="inline-block py-1 px-3 rounded-full bg-blue-100 dark:bg-primary/10 border border-blue-200 dark:border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-6">
                 Serving Charlotte & Surrounding Areas
               </span>
-              <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-8">
+              <h1 className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white leading-tight mb-8">
                 Local Businesses. <br/>
                 <span className="text-gradient-primary">Reliable Service.</span> <br/>
                 Real Value.
               </h1>
-              <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
                 We provide convenient, fully managed vending and ATM solutions for businesses and communities. Simple, reliable, and tailored to your needs.
               </p>
               
@@ -119,7 +122,7 @@ export default function Home() {
                   Request a Machine
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button onClick={() => scrollToSection('acquisitions')} className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold transition-all flex items-center justify-center gap-2">
+                <button onClick={() => scrollToSection('acquisitions')} className="w-full sm:w-auto px-8 py-4 rounded-full bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-semibold transition-all flex items-center justify-center gap-2">
                   Sell a Business or Route
                 </button>
               </div>
@@ -141,18 +144,18 @@ export default function Home() {
             {/* Service 1 */}
             <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-8 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Store size={120} className="text-white" />
+                <Store size={120} className="text-slate-900 dark:text-white" />
               </div>
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
                 <Store className="text-white w-7 h-7" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Vending Services</h3>
-              <p className="text-slate-400 mb-6 leading-relaxed">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Vending Services</h3>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
                 Full-service vending management. We handle installation, stocking, and maintenance at absolutely no cost to your business.
               </p>
               <ul className="space-y-3 mb-8">
                 {['Snacks & Drinks', 'Healthy Options', 'Cashless Payment', '24/7 Support'].map((item, i) => (
-                  <li key={i} className="flex items-center text-sm text-slate-300">
+                  <li key={i} className="flex items-center text-sm text-slate-600 dark:text-slate-300">
                     <CheckCircle2 className="w-4 h-4 text-primary mr-2" />
                     {item}
                   </li>
@@ -163,18 +166,18 @@ export default function Home() {
             {/* Service 2 */}
             <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-8 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <CreditCard size={120} className="text-white" />
+                <CreditCard size={120} className="text-slate-900 dark:text-white" />
               </div>
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center mb-6 shadow-lg shadow-cyan-500/20">
                 <CreditCard className="text-white w-7 h-7" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">ATM Services</h3>
-              <p className="text-slate-400 mb-6 leading-relaxed">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">ATM Services</h3>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
                 Convenient cash access for your customers. We place, monitor, and service ATMs in high-traffic locations.
               </p>
               <ul className="space-y-3 mb-8">
                 {['Free Installation', 'Secure Processing', 'Regular Maintenance', 'Revenue Sharing'].map((item, i) => (
-                  <li key={i} className="flex items-center text-sm text-slate-300">
+                  <li key={i} className="flex items-center text-sm text-slate-600 dark:text-slate-300">
                     <CheckCircle2 className="w-4 h-4 text-accent mr-2" />
                     {item}
                   </li>
@@ -185,17 +188,17 @@ export default function Home() {
             {/* Service 3 */}
             <motion.div id="acquisitions" variants={fadeInUp} className="glass-card rounded-2xl p-8 relative overflow-hidden group border-primary/30">
               <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <TrendingUp size={120} className="text-white" />
+                <TrendingUp size={120} className="text-slate-900 dark:text-white" />
               </div>
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
                 <TrendingUp className="text-white w-7 h-7" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Business Acquisitions</h3>
-              <p className="text-slate-400 mb-6 leading-relaxed">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Business Acquisitions</h3>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
                 Looking to sell your route or small business? We are actively acquiring vending and ATM routes in the area.
               </p>
               <div className="mt-auto">
-                <button onClick={() => scrollToSection('contact')} className="w-full py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium transition-colors">
+                <button onClick={() => scrollToSection('contact')} className="w-full py-3 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-medium transition-colors">
                   Discuss a Sale
                 </button>
               </div>
@@ -206,7 +209,7 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/50 dark:via-blue-900/10 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div 
@@ -215,22 +218,22 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Who We Are</h2>
-              <p className="text-lg text-slate-300 mb-6 leading-relaxed">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">Who We Are</h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
                 KOS2KOS, LLC is a locally owned company focused on acquiring and operating small, cash-flowing businesses. We specialize in vending machines and ATM services, with plans to expand into other small business opportunities.
               </p>
-              <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
                 Our goal is simple: To provide reliable, convenient services while building long-term partnerships with local businesses. We treat every location like a partner, not just a stop on a route.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                  <h4 className="text-white font-bold text-lg mb-1">Local Focus</h4>
-                  <p className="text-sm text-slate-400">Deeply rooted in the Charlotte community.</p>
+                <div className="p-4 rounded-xl bg-white/40 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                  <h4 className="text-slate-900 dark:text-white font-bold text-lg mb-1">Local Focus</h4>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">Deeply rooted in the Charlotte community.</p>
                 </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                  <h4 className="text-white font-bold text-lg mb-1">Reliable Support</h4>
-                  <p className="text-sm text-slate-400">Quick response times and regular maintenance.</p>
+                <div className="p-4 rounded-xl bg-white/40 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                  <h4 className="text-slate-900 dark:text-white font-bold text-lg mb-1">Reliable Support</h4>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">Quick response times and regular maintenance.</p>
                 </div>
               </div>
             </motion.div>
@@ -244,23 +247,23 @@ export default function Home() {
             >
                {/* Decorative elements representing the "network" from the logo */}
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 blur-3xl rounded-full"></div>
-              <div className="glass-card rounded-2xl p-8 relative z-10 border-t border-l border-white/20">
+              <div className="glass-card rounded-2xl p-8 relative z-10 border-t border-l border-slate-200 dark:border-white/20">
                 <div className="grid grid-cols-2 gap-4">
-                   <div className="aspect-square rounded-lg bg-slate-800/50 flex flex-col items-center justify-center text-center p-4">
-                      <span className="text-3xl font-bold text-white mb-2">100%</span>
-                      <span className="text-xs text-slate-400 uppercase tracking-wide">Free Placement</span>
+                   <div className="aspect-square rounded-lg bg-slate-100/50 dark:bg-slate-800/50 flex flex-col items-center justify-center text-center p-4">
+                      <span className="text-3xl font-bold text-primary dark:text-white mb-2">100%</span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">Free Placement</span>
                    </div>
-                   <div className="aspect-square rounded-lg bg-slate-800/50 flex flex-col items-center justify-center text-center p-4">
-                      <span className="text-3xl font-bold text-white mb-2">24/7</span>
-                      <span className="text-xs text-slate-400 uppercase tracking-wide">Support</span>
+                   <div className="aspect-square rounded-lg bg-slate-100/50 dark:bg-slate-800/50 flex flex-col items-center justify-center text-center p-4">
+                      <span className="text-3xl font-bold text-primary dark:text-white mb-2">24/7</span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">Support</span>
                    </div>
-                   <div className="aspect-square rounded-lg bg-slate-800/50 flex flex-col items-center justify-center text-center p-4">
-                      <span className="text-3xl font-bold text-white mb-2">Local</span>
-                      <span className="text-xs text-slate-400 uppercase tracking-wide">Owned</span>
+                   <div className="aspect-square rounded-lg bg-slate-100/50 dark:bg-slate-800/50 flex flex-col items-center justify-center text-center p-4">
+                      <span className="text-3xl font-bold text-primary dark:text-white mb-2">Local</span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">Owned</span>
                    </div>
-                   <div className="aspect-square rounded-lg bg-slate-800/50 flex flex-col items-center justify-center text-center p-4">
-                      <span className="text-3xl font-bold text-white mb-2">Modern</span>
-                      <span className="text-xs text-slate-400 uppercase tracking-wide">Machines</span>
+                   <div className="aspect-square rounded-lg bg-slate-100/50 dark:bg-slate-800/50 flex flex-col items-center justify-center text-center p-4">
+                      <span className="text-3xl font-bold text-primary dark:text-white mb-2">Modern</span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">Machines</span>
                    </div>
                 </div>
               </div>
@@ -270,17 +273,17 @@ export default function Home() {
       </section>
 
       {/* Ideal Locations Section */}
-      <section className="py-24 bg-slate-900/50">
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ideal Locations</h2>
-             <p className="text-slate-400 max-w-2xl mx-auto">We serve a wide variety of businesses and community centers.</p>
+             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Ideal Locations</h2>
+             <p className="text-muted-foreground max-w-2xl mx-auto">We serve a wide variety of businesses and community centers.</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
              {['Warehouses', 'Gyms', 'Barbershops', 'Offices', 'Apartments', 'Hotels'].map((loc, i) => (
-                <div key={i} className="glass p-4 rounded-xl text-center hover:bg-white/10 transition-colors cursor-default">
-                  <span className="text-sm font-medium text-slate-200">{loc}</span>
+                <div key={i} className="glass p-4 rounded-xl text-center hover:bg-slate-100 dark:hover:bg-white/10 transition-colors cursor-default">
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200">{loc}</span>
                 </div>
              ))}
           </div>
@@ -295,67 +298,67 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
               <div>
-                <h2 className="text-3xl font-bold text-white mb-6">Let's Work Together</h2>
-                <p className="text-slate-300 mb-8 leading-relaxed">
+                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Let's Work Together</h2>
+                <p className="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
                   If you’re interested in vending machines, ATM services, or partnering with KOS2KOS, LLC, we’d love to connect.
                 </p>
                 
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
                       <Phone className="w-5 h-5 text-primary" />
                     </div>
                     <div className="ml-4">
-                      <h4 className="text-white font-medium">Call Us</h4>
-                      <p className="text-slate-400">(763) 516-7767</p>
+                      <h4 className="text-slate-900 dark:text-white font-medium">Call Us</h4>
+                      <p className="text-muted-foreground">(763) 516-7767</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
                     <div className="ml-4">
-                      <h4 className="text-white font-medium">Email Us</h4>
-                      <p className="text-slate-400">biz.kos2kos@gmail.com</p>
+                      <h4 className="text-slate-900 dark:text-white font-medium">Email Us</h4>
+                      <p className="text-muted-foreground">biz.kos2kos@gmail.com</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
                       <MapPin className="w-5 h-5 text-primary" />
                     </div>
                     <div className="ml-4">
-                      <h4 className="text-white font-medium">Service Area</h4>
-                      <p className="text-slate-400">Charlotte, NC and surrounding areas</p>
+                      <h4 className="text-slate-900 dark:text-white font-medium">Service Area</h4>
+                      <p className="text-muted-foreground">Charlotte, NC and surrounding areas</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-12 pt-8 border-t border-white/10">
-                   <p className="text-slate-400 text-sm italic">"Simple solutions for everyday convenience."</p>
-                   <p className="text-white font-medium mt-2">Kehinde (Kenny) Sodunke</p>
+                <div className="mt-12 pt-8 border-t border-slate-200 dark:border-white/10">
+                   <p className="text-slate-600 dark:text-slate-400 text-sm italic">"Simple solutions for everyday convenience."</p>
+                   <p className="text-slate-900 dark:text-white font-medium mt-2">Kehinde (Kenny) Sodunke</p>
                    <p className="text-slate-500 text-xs uppercase tracking-wide">Founder</p>
                 </div>
               </div>
 
-              <div className="bg-slate-900/50 rounded-2xl p-8 border border-white/5">
+              <div className="bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl p-8 border border-slate-200 dark:border-white/5">
                 <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Name</label>
-                    <input type="text" className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="Your name" />
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Name</label>
+                    <input type="text" className="w-full bg-white dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="Your name" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Business Name</label>
-                    <input type="text" className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="Company (Optional)" />
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Business Name</label>
+                    <input type="text" className="w-full bg-white dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="Company (Optional)" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Email</label>
-                    <input type="email" className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="you@example.com" />
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email</label>
+                    <input type="email" className="w-full bg-white dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="you@example.com" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Message</label>
-                    <textarea rows={4} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="How can we help you?"></textarea>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                    <textarea rows={4} className="w-full bg-white dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="How can we help you?"></textarea>
                   </div>
                   <button type="submit" className="w-full py-4 rounded-lg glass-button text-white font-bold tracking-wide">
                     Send Message
@@ -368,13 +371,13 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-white/5 bg-slate-950">
+      <footer className="py-12 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
-             <div className="w-8 h-8 rounded bg-white/10 p-1">
+             <div className="w-8 h-8 rounded bg-slate-200 dark:bg-white/10 p-1">
                 <img src={logoImage} alt="Logo" className="w-full h-full object-contain" />
              </div>
-             <span className="font-display font-bold text-white">KOS2KOS, LLC</span>
+             <span className="font-display font-bold text-slate-900 dark:text-white">KOS2KOS, LLC</span>
           </div>
           <p className="text-slate-500 text-sm">© {new Date().getFullYear()} KOS2KOS, LLC. All rights reserved.</p>
         </div>
