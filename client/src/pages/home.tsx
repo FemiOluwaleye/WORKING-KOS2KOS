@@ -49,7 +49,7 @@ export default function Home() {
           <div className="flex justify-between items-center h-24">
             <div className="flex-shrink-0 flex items-center gap-4 cursor-pointer h-full" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <div className="h-full aspect-[3/1] relative overflow-hidden">
-                 <img src={logoImage} alt="KOS2KOS Logo" className="w-full h-full object-cover scale-[1.35]" />
+                 <img src={logoImage} alt="KOS2KOS Logo" className="w-full h-full object-cover scale-[1.10]" />
               </div>
               <span className="font-display font-bold text-3xl tracking-wide text-slate-900 dark:text-white hidden sm:block">
                 KOS<span className="text-primary">2</span>KOS
@@ -375,7 +375,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-4 h-16">
              <div className="h-full aspect-[3/1] overflow-hidden">
-                <img src={logoImage} alt="Logo" className="w-full h-full object-cover scale-[1.35]" />
+                <img src={logoImage} alt="Logo" className="w-full h-full object-cover scale-[1.10]" />
              </div>
              <span className="font-display font-bold text-2xl text-slate-900 dark:text-white">KOS2KOS, LLC</span>
           </div>
