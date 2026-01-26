@@ -47,8 +47,8 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-200 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-32">
-            <div className="flex-shrink-0 flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              <div className="w-48 relative overflow-hidden">
+            <div className="flex-shrink-0 flex items-center gap-4 cursor-pointer h-full" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <div className="h-full aspect-[3/1] relative overflow-hidden">
                  <img src={logoImage} alt="KOS2KOS Logo" className="w-full h-full object-contain" />
               </div>
               <span className="font-display font-bold text-3xl tracking-wide text-slate-900 dark:text-white hidden sm:block">
@@ -373,8 +373,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-12 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-4">
-             <div className="w-40">
+          <div className="flex items-center gap-4 h-20">
+             <div className="h-full aspect-[3/1]">
                 <img src={logoImage} alt="Logo" className="w-full h-full object-contain" />
              </div>
              <span className="font-display font-bold text-2xl text-slate-900 dark:text-white">KOS2KOS, LLC</span>
