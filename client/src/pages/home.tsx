@@ -509,15 +509,18 @@ export default function Home() {
 
               <div className="bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl p-8 border border-slate-200 dark:border-white/5">
                 {submitStatus && (
-                  <div className={`mb-4 p-4 rounded-lg ${
-                    submitStatus.type === 'success' 
-                      ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300 border border-green-200 dark:border-green-800' 
-                      : 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-800'
-                  }`}>
+                  <div 
+                    data-testid={`status-${submitStatus.type}`}
+                    className={`mb-4 p-4 rounded-lg ${
+                      submitStatus.type === 'success' 
+                        ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300 border border-green-200 dark:border-green-800' 
+                        : 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-800'
+                    }`}
+                  >
                     {submitStatus.message}
                   </div>
                 )}
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                <form className="space-y-4" onSubmit={handleSubmit} data-testid="form-contact">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                       Name <span className="text-red-500">*</span>
@@ -525,6 +528,7 @@ export default function Home() {
                     <input
                       type="text"
                       required
+                      data-testid="input-name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full bg-white dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 transition-colors"
@@ -538,6 +542,7 @@ export default function Home() {
                     </label>
                     <input
                       type="text"
+                      data-testid="input-business-name"
                       value={formData.businessName}
                       onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
                       className="w-full bg-white dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 transition-colors"
@@ -552,6 +557,7 @@ export default function Home() {
                     <input
                       type="email"
                       required
+                      data-testid="input-email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-white dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 transition-colors"
@@ -566,6 +572,7 @@ export default function Home() {
                     <textarea
                       rows={4}
                       required
+                      data-testid="input-message"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full bg-white dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 transition-colors"
@@ -576,6 +583,7 @@ export default function Home() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
+                    data-testid="button-submit"
                     className="w-full py-4 rounded-lg glass-button text-white font-bold tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
