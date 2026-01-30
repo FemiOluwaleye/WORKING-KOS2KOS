@@ -1,9 +1,10 @@
 import { Resend } from 'resend';
 
-let connectionSettings: any;
+// Resend integration for Replit Connectors
+// Following the integration pattern exactly to ensure production reliability
 
-async function getCredentials() {
-  const hostname = process.env.REPLIT_CONNECTORS_HOSTNAME
+async function getCredentials(): Promise<{ apiKey: string; fromEmail: string }> {
+  const hostname = process.env.REPLIT_CONNECTORS_HOSTNAME;
   const xReplitToken = process.env.REPL_IDENTITY 
     ? 'repl ' + process.env.REPL_IDENTITY 
     : process.env.WEB_REPL_RENEWAL 
@@ -14,7 +15,7 @@ async function getCredentials() {
     throw new Error('X_REPLIT_TOKEN not found for repl/depl');
   }
 
-  connectionSettings = await fetch(
+  const response = await fetch(
     'https://' + hostname + '/api/v2/connection?include_secrets=true&connector_names=resend',
     {
       headers: {
@@ -22,18 +23,28 @@ async function getCredentials() {
         'X_REPLIT_TOKEN': xReplitToken
       }
     }
-  ).then(res => res.json()).then(data => data.items?.[0]);
+  );
 
-  if (!connectionSettings || (!connectionSettings.settings.api_key)) {
+  const data = await response.json();
+  const connectionSettings = data.items?.[0];
+
+  if (!connectionSettings || !connectionSettings.settings?.api_key) {
     throw new Error('Resend not connected');
   }
-  return {apiKey: connectionSettings.settings.api_key, fromEmail: connectionSettings.settings.from_email};
+
+  return {
+    apiKey: connectionSettings.settings.api_key,
+    fromEmail: connectionSettings.settings.from_email
+  };
 }
 
-export async function getUncachableResendClient() {
+// WARNING: Never cache this client.
+// Access tokens expire, so a new client must be created each time.
+// Always call this function again to get a fresh client.
+export async function getUncachableResendClient(): Promise<{ client: Resend; fromEmail: string }> {
   const credentials = await getCredentials();
   return {
     client: new Resend(credentials.apiKey),
-    fromEmail: connectionSettings.settings.from_email
+    fromEmail: credentials.fromEmail
   };
 }
