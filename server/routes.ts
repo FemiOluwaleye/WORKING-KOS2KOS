@@ -22,7 +22,7 @@ export async function registerRoutes(
       const { client, fromEmail } = await getUncachableResendClient();
       
       await client.emails.send({
-        from: fromEmail,
+        from: 'KOS2KOS Website <alerts@adullamcommunity.org>',
         to: 'biz.kos2kos@gmail.com',
         replyTo: data.email,
         subject: `New Contact Form Submission from ${data.name}`,
