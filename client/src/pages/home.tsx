@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   Menu,
   X,
+  Star,
 } from "lucide-react";
 import { useState } from "react";
 import logoImage from "@assets/Logo-01_Transparent_1769326320869.png";
@@ -120,6 +121,12 @@ export default function Home() {
                 Sell Your Business
               </button>
               <button
+                onClick={() => scrollToSection("reviews")}
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+              >
+                Reviews
+              </button>
+              <button
                 onClick={() => scrollToSection("contact")}
                 className="px-5 py-2.5 rounded-full bg-slate-900 text-white dark:bg-white/10 dark:hover:bg-white/20 hover:bg-slate-800 border border-transparent dark:border-white/10 dark:text-white text-sm font-semibold transition-all"
               >
@@ -165,6 +172,12 @@ export default function Home() {
                 className="block w-full text-left px-3 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-white/5 rounded-md"
               >
                 Sell Your Business
+              </button>
+              <button
+                onClick={() => scrollToSection("reviews")}
+                className="block w-full text-left px-3 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-white/5 rounded-md"
+              >
+                Reviews
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
@@ -434,6 +447,133 @@ export default function Home() {
                   {loc}
                 </span>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section id="reviews" className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
+              <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-200">Google Reviews</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              What Our Customers Say
+            </h2>
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <span className="text-5xl font-bold text-slate-900 dark:text-white">5.0</span>
+              <div className="flex flex-col items-start">
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <span className="text-sm text-muted-foreground">7 reviews</span>
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Ibukunoluwa Owolabi",
+                badge: "Local Guide",
+                details: "23 reviews \u00b7 5 photos",
+                time: "1 week ago",
+                text: "Always stocked, clean, and working properly. Super convenient and the snack options are great. Definitely one of the best vending machines around!",
+              },
+              {
+                name: "Precious",
+                badge: null,
+                details: "1 review",
+                time: "1 week ago",
+                text: "Excellent services that prioritize customer satisfaction!",
+              },
+              {
+                name: "Mofe Fagbemi",
+                badge: "Local Guide",
+                details: "11 reviews \u00b7 2 photos",
+                time: "1 week ago",
+                text: "Top tier services, would definitely recommend!",
+              },
+              {
+                name: "Temidayo Fadase",
+                badge: null,
+                details: "3 reviews",
+                time: "4 days ago",
+                text: "One of the best business to work with and wonderful customer service.",
+              },
+              {
+                name: "Evi Odioko",
+                badge: "Local Guide",
+                details: "5 reviews \u00b7 25 photos",
+                time: "1 week ago",
+                text: "Professional service!",
+              },
+              {
+                name: "Oluwaseun",
+                badge: null,
+                details: "1 review",
+                time: "1 week ago",
+                text: "Great options, reliable and convenient services, and super friendly customer service. You won't be disappointed at all!",
+              },
+              {
+                name: "Chinazom C",
+                badge: "Local Guide",
+                details: "66 reviews \u00b7 34 photos",
+                time: "1 week ago",
+                text: "",
+              },
+            ].map((review, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="glass-card rounded-2xl p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow"
+                data-testid={`card-review-${i}`}
+              >
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                    {review.name.charAt(0)}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-semibold text-slate-900 dark:text-white text-sm">{review.name}</span>
+                      {review.badge && (
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
+                          {review.badge}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-muted-foreground">{review.details}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, j) => (
+                      <Star key={j} className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  <span className="text-xs text-muted-foreground">{review.time}</span>
+                </div>
+                {review.text && (
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    {review.text}
+                  </p>
+                )}
+              </motion.div>
             ))}
           </div>
         </div>
