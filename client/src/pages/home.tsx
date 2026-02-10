@@ -483,98 +483,100 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                name: "Ibukunoluwa Owolabi",
-                badge: "Local Guide",
-                details: "23 reviews \u00b7 5 photos",
-                time: "1 week ago",
-                text: "Always stocked, clean, and working properly. Super convenient and the snack options are great. Definitely one of the best vending machines around!",
-              },
-              {
-                name: "Precious",
-                badge: null,
-                details: "1 review",
-                time: "1 week ago",
-                text: "Excellent services that prioritize customer satisfaction!",
-              },
-              {
-                name: "Mofe Fagbemi",
-                badge: "Local Guide",
-                details: "11 reviews \u00b7 2 photos",
-                time: "1 week ago",
-                text: "Top tier services, would definitely recommend!",
-              },
-              {
-                name: "Temidayo Fadase",
-                badge: null,
-                details: "3 reviews",
-                time: "4 days ago",
-                text: "One of the best business to work with and wonderful customer service.",
-              },
-              {
-                name: "Evi Odioko",
-                badge: "Local Guide",
-                details: "5 reviews \u00b7 25 photos",
-                time: "1 week ago",
-                text: "Professional service!",
-              },
-              {
-                name: "Oluwaseun",
-                badge: null,
-                details: "1 review",
-                time: "1 week ago",
-                text: "Great options, reliable and convenient services, and super friendly customer service. You won't be disappointed at all!",
-              },
-              {
-                name: "Chinazom C",
-                badge: "Local Guide",
-                details: "66 reviews \u00b7 34 photos",
-                time: "1 week ago",
-                text: "",
-              },
-            ].map((review, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="glass-card rounded-2xl p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow"
-                data-testid={`card-review-${i}`}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center text-white font-bold text-sm shrink-0">
-                    {review.name.charAt(0)}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-semibold text-slate-900 dark:text-white text-sm">{review.name}</span>
-                      {review.badge && (
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
-                          {review.badge}
-                        </span>
-                      )}
+          <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+            <div className="flex gap-6" style={{ minWidth: 'max-content' }}>
+              {[
+                {
+                  name: "Ibukunoluwa Owolabi",
+                  badge: "Local Guide",
+                  details: "23 reviews \u00b7 5 photos",
+                  time: "1 week ago",
+                  text: "Always stocked, clean, and working properly. Super convenient and the snack options are great. Definitely one of the best vending machines around!",
+                },
+                {
+                  name: "Precious",
+                  badge: null,
+                  details: "1 review",
+                  time: "1 week ago",
+                  text: "Excellent services that prioritize customer satisfaction!",
+                },
+                {
+                  name: "Mofe Fagbemi",
+                  badge: "Local Guide",
+                  details: "11 reviews \u00b7 2 photos",
+                  time: "1 week ago",
+                  text: "Top tier services, would definitely recommend!",
+                },
+                {
+                  name: "Temidayo Fadase",
+                  badge: null,
+                  details: "3 reviews",
+                  time: "4 days ago",
+                  text: "One of the best business to work with and wonderful customer service.",
+                },
+                {
+                  name: "Evi Odioko",
+                  badge: "Local Guide",
+                  details: "5 reviews \u00b7 25 photos",
+                  time: "1 week ago",
+                  text: "Professional service!",
+                },
+                {
+                  name: "Oluwaseun",
+                  badge: null,
+                  details: "1 review",
+                  time: "1 week ago",
+                  text: "Great options, reliable and convenient services, and super friendly customer service. You won't be disappointed at all!",
+                },
+                {
+                  name: "Chinazom C",
+                  badge: "Local Guide",
+                  details: "66 reviews \u00b7 34 photos",
+                  time: "1 week ago",
+                  text: "",
+                },
+              ].map((review, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  className="glass-card rounded-2xl p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow w-[340px] shrink-0"
+                  data-testid={`card-review-${i}`}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                      {review.name.charAt(0)}
                     </div>
-                    <p className="text-xs text-muted-foreground">{review.details}</p>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-semibold text-slate-900 dark:text-white text-sm">{review.name}</span>
+                        {review.badge && (
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
+                            {review.badge}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs text-muted-foreground">{review.details}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex gap-0.5">
-                    {[...Array(5)].map((_, j) => (
-                      <Star key={j} className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
-                    ))}
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-0.5">
+                      {[...Array(5)].map((_, j) => (
+                        <Star key={j} className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
+                      ))}
+                    </div>
+                    <span className="text-xs text-muted-foreground">{review.time}</span>
                   </div>
-                  <span className="text-xs text-muted-foreground">{review.time}</span>
-                </div>
-                {review.text && (
-                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                    {review.text}
-                  </p>
-                )}
-              </motion.div>
-            ))}
+                  {review.text && (
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {review.text}
+                    </p>
+                  )}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
